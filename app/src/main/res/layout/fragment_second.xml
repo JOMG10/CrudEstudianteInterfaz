@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!-- fragment_second.xml -->
+
+<!-- fragment_second.xml -->
+<!-- fragment_second.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+        <TextView
+            android:id="@+id/txtEstudiantes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lista de Estudiantes"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btnListarEstudiantes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="mostrarLista"
+            android:text="listar Estudiante"
+            android:layout_marginTop="300dp"/>
+
+</RelativeLayout>
+
+
+
