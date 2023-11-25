@@ -46,7 +46,23 @@ class FirstFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+         //return inflater.inflate(R.layout.fragment_first, container, false)
+        /*
+        editTextNumeroControl = view.findViewById(R.id.editTextNumeroControl)
+        editTextNombre = view.findViewById(R.id.editTextNombre)
+        editTextApellidos = view.findViewById(R.id.editTextApellidos)
+        editTextSemestre = view.findViewById(R.id.editTextSemestre)
+
+
+        val btnAgregarEstudiante: Button = view.findViewById(R.id.btnAgregarEstudiante)
+        btnAgregarEstudiante.setOnClickListener {
+            agregarEstudiante()
+
+        }
+
+        return view
+
+         */
         val view = inflater.inflate(R.layout.fragment_first, container, false)
 
         editTextNumeroControl = view.findViewById(R.id.editTextNumeroControl)
@@ -56,11 +72,38 @@ class FirstFragment : Fragment() {
 
         val btnAgregarEstudiante: Button = view.findViewById(R.id.btnAgregarEstudiante)
         btnAgregarEstudiante.setOnClickListener {
-            agregarEstudiante()
-
+            agregarEstudiant()
         }
 
         return view
+
+    }
+
+    private fun agregarEstudiant() {
+
+        val numeroControl = editTextNumeroControl.text.toString()
+        val nombre = editTextNombre.text.toString()
+        val apellidos = editTextApellidos.text.toString()
+        val semestre = editTextSemestre.text.toString().toIntOrNull()
+
+        if (numeroControl.isNotEmpty() && nombre.isNotEmpty() && apellidos.isNotEmpty() && semestre != null ) {
+            // Llamar al método CRUD en la otra clase para agregar el estudiante
+            val estudiante = Estudiante(numeroControl, nombre, apellidos, semestre)
+            crudEstudiante.agregarEstudiante(estudiante)
+            clearFields()
+            Toast.makeText(context, "Estudiante agregado correctamente" , Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(context, "Ingrese datos válidos", Toast.LENGTH_SHORT).show()
+        }
+
+
+    }
+
+    private fun clearFields() {
+        editTextNumeroControl.text.clear()
+        editTextNombre.text.clear()
+        editTextApellidos.text.clear()
+        editTextSemestre.text.clear()
     }
 
     fun agregarEstudiante() {
@@ -72,12 +115,12 @@ class FirstFragment : Fragment() {
         if (numeroControl.isNotEmpty() && nombre.isNotEmpty() && apellidos.isNotEmpty() && semestre != null ) {
             // Llamar al método CRUD en la otra clase para agregar el estudiante
             crudEstudiante.crearEstudiante(numeroControl,nombre, apellidos, semestre)
-            crudEstudiante.crearEstudiante("numeroControl","nombre", "apellidos", 7)
             Toast.makeText(context, "Estudiante agregado correctamente" + nombre + numeroControl, Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(context, "Ingrese datos válidos", Toast.LENGTH_SHORT).show()
         }
     }
+
 
     companion object {
         /**

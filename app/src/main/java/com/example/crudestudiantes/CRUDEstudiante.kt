@@ -10,12 +10,22 @@ class CRUDEstudiante {
         val estudiante = Estudiante(numeroControl, nombre, apellidos, semestre)
 
         listaEstudiantes.add(estudiante)
-        Log.d("CRUDEstudiante", "Estudiante agregado: $estudiante")
-        Log.d("CRUDEstudiante", "Lista de estudiantes después de agregar: $listaEstudiantes")
-        println("Estudiante agregado correctamente desde la clase crud!!")
+    }
+    //metodo actualizado--------------------
 
+    fun agregarEstudiante(estudiante: Estudiante) {
+        listaEstudiantes.add(estudiante)
+        print("accediendo ala clase crud")
+        Log.d("se agrego" ,"Estudiante agregado correctamente:  $estudiante ")
+    }
+
+    fun listarEstudiantes(): List<Estudiante> {
+        print("accediendo ala clase crud")
+        Log.d("se agrego" ,"Estudiante agregado correctamente ")
+        return listaEstudiantes.toList()
 
     }
+    //--------------------------------------------------
 
     fun eliminarEstudiante(numeroControl: String): String {
         val iterador = listaEstudiantes.iterator()
@@ -39,6 +49,8 @@ class CRUDEstudiante {
     }
 
     fun obtenerListaEstudiantes(): List<Estudiante> {
+        Log.d("CRUDEstudiante", "Accediendo al metodo listar estudiantes: ")
+
         return listaEstudiantes.toList()
     }
 

@@ -44,16 +44,28 @@ class SecondFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_second, container, false)
+
+       val view = inflater.inflate(R.layout.fragment_second, container, false)
 
         val btnListarEstudiantes = view.findViewById<Button>(R.id.btnListarEstudiantes)
-        btnListarEstudiantes?.setOnClickListener { mostrarLista(it) }
+        btnListarEstudiantes?.setOnClickListener { listarEstudiantes() }
 
-        txtEstudiantes = view.findViewById(R.id.txtEstudiantes)
-
-
+        //txtEstudiantes = view.findViewById(R.id.txtEstudiantes)
         return view
     }
+
+
+    private fun listarEstudiantes() {
+        val estudiantes = crudEstudiante.listarEstudiantes()
+        val textViewEstudiantes = view?.findViewById<TextView>(R.id.txtEstudiantes)
+        textViewEstudiantes?.text = ""
+        for (estudiante in estudiantes) {
+            textViewEstudiantes?.append(
+                "ID: ${estudiante.numeroControl}, Nombre: ${estudiante.nombre}, Apellidos: ${estudiante.apellidos}, Semestre: ${estudiante.semestre}\n"
+            )
+        }
+    }
+
 
     @SuppressLint("SetTextI18n")
     fun mostrarLista(view: View) {
