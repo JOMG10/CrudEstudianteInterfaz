@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FiveFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="0dp"
+        android:textSize="40sp"
+        android:fontFamily="sans-serif-black"
+        android:text="Eliminar estudiante"
+        android:textColor="@color/green_normal"/>
+
+
+    <EditText
+        android:id="@+id/txtBuscarE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Numero de control del estudiante"
+        android:layout_marginTop="70dp"/>
+
+    <Button
+        android:id="@+id/btnEliminarEstudiante"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:onClick="eliminarEstudiante"
+        android:text="Eliminar Estudiante"
+        />
+
+    <TextView
+        android:id="@+id/txtEstudiantes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No ha buscado nungun Estudiante"
+        android:textSize="18sp"
+        android:layout_marginTop="220dp"/>
+
+
+
+
+</FrameLayout>
