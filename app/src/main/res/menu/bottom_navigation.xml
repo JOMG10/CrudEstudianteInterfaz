@@ -11,11 +11,20 @@
         android:icon="@android:drawable/ic_menu_view"
         android:title="Listar" />
 
-
     <item
         android:id="@+id/thirdFragment"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="Buscar" />
+
+    <item
+        android:id="@+id/fourFragment"
         android:icon="@android:drawable/ic_menu_edit"
         android:title="Editar" />
+
+    <item
+        android:id="@+id/fiveFragment"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:title="Borrar" />
 
 
 </menu>

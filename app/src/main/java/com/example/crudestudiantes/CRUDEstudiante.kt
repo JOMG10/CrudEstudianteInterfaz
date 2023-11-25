@@ -6,11 +6,6 @@ import android.util.Log
 class CRUDEstudiante {
     private val listaEstudiantes = mutableListOf<Estudiante>()
 
-    fun crearEstudiante(numeroControl: String, nombre: String, apellidos: String, semestre: Int) {
-        val estudiante = Estudiante(numeroControl, nombre, apellidos, semestre)
-
-        listaEstudiantes.add(estudiante)
-    }
     //metodo actualizado--------------------
 
     fun agregarEstudiante(estudiante: Estudiante) {
@@ -51,11 +46,17 @@ class CRUDEstudiante {
         return "Estudiante no encontrado."
     }
 
-    fun obtenerListaEstudiantes(): List<Estudiante> {
-        Log.d("CRUDEstudiante", "Accediendo al metodo listar estudiantes: ")
-
-        return listaEstudiantes.toList()
+    fun editar(numeroControl: String): Estudiante? {
+        for (estudiante in listaEstudiantes) {
+            if (estudiante.numeroControl == numeroControl) {
+                // Si encuentras el estudiante, lo devuelves directamente
+                return estudiante
+            }
+        }
+        // Si no encuentras al estudiante, devuelves null
+        return null
     }
+
 
     fun editarEstudiantes(numeroControl: String, nombre: String, apellidos: String, semestre: Int): String {
         for (estudiante in listaEstudiantes) {

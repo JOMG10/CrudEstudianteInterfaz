@@ -54,6 +54,7 @@ class ThirdFragment : Fragment() {
         return view
     }
 
+    @SuppressLint("SuspiciousIndentation")
     fun buscarEstudiante(){
         val crudEstudiante = (activity as MainActivity).crudEstudiante
         val numeroControl = editTextNumeroControl.text.toString()
@@ -62,7 +63,7 @@ class ThirdFragment : Fragment() {
         val textViewEstudiantes = view?.findViewById<TextView>(R.id.txtEstudiantes)
         textViewEstudiantes?.text = ""
 
-            textViewEstudiantes?.append(estudiante)
+        textViewEstudiantes?.append(estudiante)
 
         clearFields()
 

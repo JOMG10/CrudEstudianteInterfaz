@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
+import android.widget.TextView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,18 +17,15 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [FirstFragment.newInstance] factory method to
+ * Use the [FiveFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FirstFragment : Fragment() {
+class FiveFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
     private lateinit var editTextNumeroControl: EditText
-    private lateinit var editTextNombre: EditText
-    private lateinit var editTextApellidos: EditText
-    private lateinit var editTextSemestre: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,50 +40,38 @@ class FirstFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val view = inflater.inflate(R.layout.fragment_five, container, false)
 
-        val view = inflater.inflate(R.layout.fragment_first, container, false)
+        editTextNumeroControl = view.findViewById(R.id.txtBuscarE)
+        // Inflate the layout for this fragment
 
-        editTextNumeroControl = view.findViewById(R.id.editTextNumeroControl)
-        editTextNombre = view.findViewById(R.id.editTextNombre)
-        editTextApellidos = view.findViewById(R.id.editTextApellidos)
-        editTextSemestre = view.findViewById(R.id.editTextSemestre)
 
-        val btnAgregarEstudiante: Button = view.findViewById(R.id.btnAgregarEstudiante)
+        val btnAgregarEstudiante: Button = view.findViewById(R.id.btnEliminarEstudiante)
         btnAgregarEstudiante.setOnClickListener {
-            agregarEstudiant()
+            buscarEstudiante()
         }
 
         return view
-
     }
 
-    private fun agregarEstudiant() {
+    @SuppressLint("SuspiciousIndentation")
+    fun buscarEstudiante(){
         val crudEstudiante = (activity as MainActivity).crudEstudiante
-
         val numeroControl = editTextNumeroControl.text.toString()
-        val nombre = editTextNombre.text.toString()
-        val apellidos = editTextApellidos.text.toString()
-        val semestre = editTextSemestre.text.toString().toIntOrNull()
 
-        if (numeroControl.isNotEmpty() && nombre.isNotEmpty() && apellidos.isNotEmpty() && semestre != null ) {
-            // Llamar al método CRUD en la otra clase para agregar el estudiante
-            val estudiante = Estudiante(numeroControl, nombre, apellidos, semestre)
-            crudEstudiante.agregarEstudiante(estudiante)
-            clearFields()
-            Toast.makeText(context, "Estudiante agregado correctamente" , Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(context, "Ingrese datos válidos", Toast.LENGTH_SHORT).show()
-        }
+        val estudiante = crudEstudiante.eliminarEstudiante(numeroControl)
+        val textViewEstudiantes = view?.findViewById<TextView>(R.id.txtEstudiantes)
+        textViewEstudiantes?.text = ""
+
+        textViewEstudiantes?.append(estudiante)
+
+        clearFields()
 
     }
 
     private fun clearFields() {
         editTextNumeroControl.text.clear()
-        editTextNombre.text.clear()
-        editTextApellidos.text.clear()
-        editTextSemestre.text.clear()
     }
-
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -94,12 +79,12 @@ class FirstFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment FirstFragment.
+         * @return A new instance of fragment FiveFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            FirstFragment().apply {
+            FiveFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
