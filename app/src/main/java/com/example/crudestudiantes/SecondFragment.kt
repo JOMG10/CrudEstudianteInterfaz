@@ -28,7 +28,6 @@ class SecondFragment : Fragment() {
     private var param2: String? = null
 
 
-    private val crudEstudiante = CRUDEstudiante()
     private lateinit var txtEstudiantes: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,25 +49,32 @@ class SecondFragment : Fragment() {
         val btnListarEstudiantes = view.findViewById<Button>(R.id.btnListarEstudiantes)
         btnListarEstudiantes?.setOnClickListener { listarEstudiantes() }
 
-        //txtEstudiantes = view.findViewById(R.id.txtEstudiantes)
+        txtEstudiantes = view.findViewById(R.id.txtEstudiantes)
         return view
     }
 
 
     private fun listarEstudiantes() {
+        val crudEstudiante = (activity as MainActivity).crudEstudiante
+
         val estudiantes = crudEstudiante.listarEstudiantes()
         val textViewEstudiantes = view?.findViewById<TextView>(R.id.txtEstudiantes)
         textViewEstudiantes?.text = ""
         for (estudiante in estudiantes) {
             textViewEstudiantes?.append(
-                "ID: ${estudiante.numeroControl}, Nombre: ${estudiante.nombre}, Apellidos: ${estudiante.apellidos}, Semestre: ${estudiante.semestre}\n"
-            )
+                "\n \n-----LISTA DE LOS ESTUDIANTES -----\n" +
+                        "--NUMERO DE CONTROL: ${estudiante.numeroControl}\n" +
+                        "NOMBRE: ${estudiante.nombre}\n" +
+                        " APELLIDOS: ${estudiante.apellidos}\n" +
+                        " SEMESTRE: ${estudiante.semestre}\n \n ")
         }
     }
 
 
     @SuppressLint("SetTextI18n")
     fun mostrarLista(view: View) {
+        val crudEstudiante = (activity as MainActivity).crudEstudiante
+
         Log.d("SecondFragment", "mostrarLista() llamado")
         val listaEstudiantes = crudEstudiante.obtenerListaEstudiantes()
 

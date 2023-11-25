@@ -30,7 +30,9 @@ class FirstFragment : Fragment() {
     private lateinit var editTextApellidos: EditText
     private lateinit var editTextSemestre: EditText
 
-    private val crudEstudiante = CRUDEstudiante()
+
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,23 +48,7 @@ class FirstFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-         //return inflater.inflate(R.layout.fragment_first, container, false)
-        /*
-        editTextNumeroControl = view.findViewById(R.id.editTextNumeroControl)
-        editTextNombre = view.findViewById(R.id.editTextNombre)
-        editTextApellidos = view.findViewById(R.id.editTextApellidos)
-        editTextSemestre = view.findViewById(R.id.editTextSemestre)
 
-
-        val btnAgregarEstudiante: Button = view.findViewById(R.id.btnAgregarEstudiante)
-        btnAgregarEstudiante.setOnClickListener {
-            agregarEstudiante()
-
-        }
-
-        return view
-
-         */
         val view = inflater.inflate(R.layout.fragment_first, container, false)
 
         editTextNumeroControl = view.findViewById(R.id.editTextNumeroControl)
@@ -80,6 +66,7 @@ class FirstFragment : Fragment() {
     }
 
     private fun agregarEstudiant() {
+        val crudEstudiante = (activity as MainActivity).crudEstudiante
 
         val numeroControl = editTextNumeroControl.text.toString()
         val nombre = editTextNombre.text.toString()
@@ -96,7 +83,6 @@ class FirstFragment : Fragment() {
             Toast.makeText(context, "Ingrese datos válidos", Toast.LENGTH_SHORT).show()
         }
 
-
     }
 
     private fun clearFields() {
@@ -105,22 +91,6 @@ class FirstFragment : Fragment() {
         editTextApellidos.text.clear()
         editTextSemestre.text.clear()
     }
-
-    fun agregarEstudiante() {
-        val numeroControl = editTextNumeroControl.text.toString()
-        val nombre = editTextNombre.text.toString()
-        val apellidos = editTextApellidos.text.toString()
-        val semestre = editTextSemestre.text.toString().toIntOrNull()
-
-        if (numeroControl.isNotEmpty() && nombre.isNotEmpty() && apellidos.isNotEmpty() && semestre != null ) {
-            // Llamar al método CRUD en la otra clase para agregar el estudiante
-            crudEstudiante.crearEstudiante(numeroControl,nombre, apellidos, semestre)
-            Toast.makeText(context, "Estudiante agregado correctamente" + nombre + numeroControl, Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(context, "Ingrese datos válidos", Toast.LENGTH_SHORT).show()
-        }
-    }
-
 
     companion object {
         /**

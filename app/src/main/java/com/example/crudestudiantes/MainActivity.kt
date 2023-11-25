@@ -2,6 +2,7 @@ package com.example.crudestudiantes
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -11,11 +12,14 @@ class MainActivity : AppCompatActivity() {
     private val secondFragment = SecondFragment()
     private val thirdFragment = ThirdFragment()
 
+    val crudEstudiante = CRUDEstudiante()
+
     private val mOnNavigationItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.firstFragment -> {
                     loadFragment(firstFragment)
+
 
                     return@OnNavigationItemSelectedListener true
                 }

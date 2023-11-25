@@ -10,10 +10,34 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="0dp"
         android:textSize="40sp"
         android:fontFamily="sans-serif-black"
-        android:text="Tercer fragmento"
+        android:text="Buscar estudiante"
         android:textColor="@color/green_normal"/>
+
+    <EditText
+        android:id="@+id/txtBuscarEstudiante"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Numero de control del estudiante"
+        android:layout_marginTop="150dp"/>
+    <TextView
+        android:id="@+id/txtEstudiantes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lista de Estudiantes"
+        android:textSize="18sp"
+        android:layout_marginTop="220dp"/>
+
+    <Button
+        android:id="@+id/btnBuscarEstudiante"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:onClick="buscarEstudiante"
+        android:text="buscar Estudiante"
+        />
+
 
 </FrameLayout>

@@ -12,26 +12,43 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:fontFamily="sans-serif-black"
+            android:gravity="center_horizontal"
+            android:text="Agregar estudiante"
+            android:textColor="@color/green_normal"
+            android:textSize="40sp" />
+
+
+
+
         <EditText
             android:id="@+id/editTextNumeroControl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Numero de control"
-            android:layout_marginTop="20dp"/>
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"/>
 
         <EditText
             android:id="@+id/editTextNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nombre"
-            android:layout_marginTop="20dp"/>
+            android:textSize="20dp"
+        android:layout_marginTop="10dp"/>
 
         <EditText
             android:id="@+id/editTextApellidos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Apellidos"
-            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
              />
 
         <EditText
@@ -39,16 +56,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Semestre"
+            android:textSize="20dp"
             android:inputType="number"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="10dp"/>
 
         <Button
             android:id="@+id/btnAgregarEstudiante"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:onClick="agregarEstudiante"
-            android:text="Agregar Estudiante"
-            android:layout_marginTop="80dp"/>
+            android:text="Agregar"
+            android:layout_marginTop="0dp"
+            android:layout_gravity="center"
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            />
 
 
     </LinearLayout>

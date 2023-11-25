@@ -20,8 +20,7 @@ class CRUDEstudiante {
     }
 
     fun listarEstudiantes(): List<Estudiante> {
-        print("accediendo ala clase crud")
-        Log.d("se agrego" ,"Estudiante agregado correctamente ")
+        Log.d("se agrego" ,"retornando la lista: $listaEstudiantes")
         return listaEstudiantes.toList()
 
     }
@@ -42,7 +41,11 @@ class CRUDEstudiante {
     fun buscarEstudiante(numeroControl: String): String {
         for (estudiante in listaEstudiantes) {
             if (estudiante.numeroControl == numeroControl) {
-                return "Número de control: ${estudiante.numeroControl}, Nombre: ${estudiante.nombre}, Apellidos: ${estudiante.apellidos}, Semestre: ${estudiante.semestre}"
+                return  "----DATOS DEL ESTUDIANTE -----\n" +
+                        "NUMERO DE CONTROL: ${estudiante.numeroControl}\n" +
+                        "NOMBRE: ${estudiante.nombre}\n" +
+                        " APELLIDOS: ${estudiante.apellidos}\n" +
+                        " SEMESTRE: ${estudiante.semestre}\n \n "
             }
         }
         return "Estudiante no encontrado."

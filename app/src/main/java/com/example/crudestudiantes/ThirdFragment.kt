@@ -1,10 +1,14 @@
 package com.example.crudestudiantes
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +25,8 @@ class ThirdFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var editTextNumeroControl: EditText
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -29,14 +35,42 @@ class ThirdFragment : Fragment() {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val view = inflater.inflate(R.layout.fragment_third, container, false)
+
+        editTextNumeroControl = view.findViewById(R.id.txtBuscarEstudiante)
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_third, container, false)
+
+
+        val btnAgregarEstudiante: Button = view.findViewById(R.id.btnBuscarEstudiante)
+        btnAgregarEstudiante.setOnClickListener {
+            buscarEstudiante()
+        }
+
+        return view
     }
 
+    fun buscarEstudiante(){
+        val crudEstudiante = (activity as MainActivity).crudEstudiante
+        val numeroControl = editTextNumeroControl.text.toString()
+
+        val estudiante = crudEstudiante.buscarEstudiante(numeroControl)
+        val textViewEstudiantes = view?.findViewById<TextView>(R.id.txtEstudiantes)
+        textViewEstudiantes?.text = ""
+
+            textViewEstudiantes?.append(estudiante)
+
+        clearFields()
+
+    }
+
+    private fun clearFields() {
+        editTextNumeroControl.text.clear()
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of
