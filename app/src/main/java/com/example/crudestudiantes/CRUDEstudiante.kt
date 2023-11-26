@@ -58,17 +58,18 @@ class CRUDEstudiante {
     }
 
 
-    fun editarEstudiantes(numeroControl: String, nombre: String, apellidos: String, semestre: Int): String {
+    fun editarEstudiantes(numeroControl: String, nombre: String, apellidos: String, semestre: String): Boolean {
         for (estudiante in listaEstudiantes) {
             if (estudiante.numeroControl == numeroControl) {
                 estudiante.nombre = nombre
                 estudiante.apellidos = apellidos
                 estudiante.semestre = semestre
-                return "Estudiante editado correctamente."
+                return true // Edición exitosa
             }
         }
-        return "Estudiante no encontrado."
+        return false // Estudiante no encontrado
     }
+
 }
 
 

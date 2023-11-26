@@ -66,9 +66,9 @@ class FirstFragment : Fragment() {
         val numeroControl = editTextNumeroControl.text.toString()
         val nombre = editTextNombre.text.toString()
         val apellidos = editTextApellidos.text.toString()
-        val semestre = editTextSemestre.text.toString().toIntOrNull()
+        val semestre = editTextSemestre.text.toString()
 
-        if (numeroControl.isNotEmpty() && nombre.isNotEmpty() && apellidos.isNotEmpty() && semestre != null ) {
+        if (numeroControl.isNotEmpty() && nombre.isNotEmpty() && apellidos.isNotEmpty() &&  semestre.isNotEmpty() ) {
             // Llamar al método CRUD en la otra clase para agregar el estudiante
             val estudiante = Estudiante(numeroControl, nombre, apellidos, semestre)
             crudEstudiante.agregarEstudiante(estudiante)
