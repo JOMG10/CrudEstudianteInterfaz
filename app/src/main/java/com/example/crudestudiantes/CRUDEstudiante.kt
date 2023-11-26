@@ -1,23 +1,19 @@
 package com.example.crudestudiantes
 
+import android.annotation.SuppressLint
 import android.util.Log
 
 
 class CRUDEstudiante {
     private val listaEstudiantes = mutableListOf<Estudiante>()
 
-    //metodo actualizado--------------------
 
     fun agregarEstudiante(estudiante: Estudiante) {
         listaEstudiantes.add(estudiante)
-        print("accediendo ala clase crud")
-        Log.d("se agrego" ,"Estudiante agregado correctamente:  $estudiante ")
     }
 
     fun listarEstudiantes(): List<Estudiante> {
-        Log.d("se agrego" ,"retornando la lista: $listaEstudiantes")
         return listaEstudiantes.toList()
-
     }
     //--------------------------------------------------
 
@@ -36,8 +32,7 @@ class CRUDEstudiante {
     fun buscarEstudiante(numeroControl: String): String {
         for (estudiante in listaEstudiantes) {
             if (estudiante.numeroControl == numeroControl) {
-                return  "----DATOS DEL ESTUDIANTE -----\n" +
-                        "NUMERO DE CONTROL: ${estudiante.numeroControl}\n" +
+                return  "NUMERO DE CONTROL: ${estudiante.numeroControl}\n" +
                         "NOMBRE: ${estudiante.nombre}\n" +
                         " APELLIDOS: ${estudiante.apellidos}\n" +
                         " SEMESTRE: ${estudiante.semestre}\n \n "
@@ -46,7 +41,10 @@ class CRUDEstudiante {
         return "Estudiante no encontrado."
     }
 
+    @SuppressLint("LongLogTag")
     fun editar(numeroControl: String): Estudiante? {
+        Log.d("accediendo al metodo editar" ,"de la clase crud")
+
         for (estudiante in listaEstudiantes) {
             if (estudiante.numeroControl == numeroControl) {
                 // Si encuentras el estudiante, lo devuelves directamente
@@ -58,18 +56,17 @@ class CRUDEstudiante {
     }
 
 
-    fun editarEstudiantes(numeroControl: String, nombre: String, apellidos: String, semestre: Int): String {
-        for (estudiante in listaEstudiantes) {
+    @SuppressLint("LongLogTag")
+    fun editarEstudiantes(numeroControl: String, nombre: String, apellidos: String, semestre: String): Boolean {
+         for (estudiante in listaEstudiantes) {
             if (estudiante.numeroControl == numeroControl) {
                 estudiante.nombre = nombre
                 estudiante.apellidos = apellidos
                 estudiante.semestre = semestre
-                return "Estudiante editado correctamente."
+                return true // Edición exitosa
             }
         }
-        return "Estudiante no encontrado."
+        return false // Estudiante no encontrado
     }
+
 }
-
-
-

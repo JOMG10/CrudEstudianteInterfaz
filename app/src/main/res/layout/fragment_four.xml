@@ -17,9 +17,9 @@
             android:layout_marginTop="0dp"
             android:fontFamily="sans-serif-black"
             android:gravity="center_horizontal"
-            android:text="Editar estudiante"
+            android:text="EDITAR ESTUDIANTE"
             android:textColor="@color/green_normal"
-            android:textSize="40sp" />
+            android:textSize="30sp" />
 
 
         <EditText
@@ -33,7 +33,7 @@
 
         <Button
             android:id="@+id/btnBuscarEstudianteEdit"
-            android:onClick="agregarEstudiante"
+            android:onClick="actualizarDatos"
             android:text="Buscar"
             android:layout_marginTop="0dp"
             android:layout_gravity="center"
@@ -77,7 +77,7 @@
 
         <Button
             android:id="@+id/btnEditarEstudiante"
-            android:onClick="agregarEstudiante"
+            android:onClick="editarEstudiantes"
             android:text="Actualizar"
             android:layout_marginTop="0dp"
             android:layout_gravity="center"

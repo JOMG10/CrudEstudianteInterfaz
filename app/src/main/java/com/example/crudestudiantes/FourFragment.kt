@@ -2,6 +2,7 @@ package com.example.crudestudiantes
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -48,6 +49,10 @@ class FourFragment() : Fragment() {
 
 
         buscarEstudianteEditar = view.findViewById(R.id.BuscarEstudianteEditar)
+        editTextNumeroControl = view.findViewById(R.id.editarNumeroControl)
+        editTextNombre = view.findViewById(R.id.editarNombre)
+        editTextApellidos = view.findViewById(R.id.editarApellidos)
+        editTextSemestre = view.findViewById(R.id.editarSemestre)
 
         val btnAgregarEstudiante: Button = view.findViewById(R.id.btnBuscarEstudianteEdit)
         btnAgregarEstudiante.setOnClickListener {
@@ -59,64 +64,68 @@ class FourFragment() : Fragment() {
     }
 
 
+
     fun buscarEstudianteEditar() {
+
         val crudEstudiante = (activity as MainActivity).crudEstudiante
 
         val numeroControl = buscarEstudianteEditar.text.toString()
 
-        // Llama al método editar de CRUDEstudiante para obtener el estudiante
         val estudiante = crudEstudiante.editar(numeroControl)
 
         if (estudiante != null) {
-            // Asignas cada valor a los EditText correspondientes
-            val nuevoControl = editTextNumeroControl.setText(estudiante.numeroControl).toString()
-            val nuevoNombre =  editTextNombre.setText(estudiante.nombre).toString()
-            val nuevoApellido =  editTextApellidos.setText(estudiante.apellidos).toString()
-            val nuevoSemestreStr = editTextSemestre.text.toString()
-            val nuevoSemestre = nuevoSemestreStr.toIntOrNull()
 
-            //val nuevoSemestre  = editTextSemestre.setText((estudiante.semestre.toString().toIntOrNull()))
+            editTextNumeroControl.setText(estudiante.numeroControl)
+            editTextNombre.setText(estudiante.nombre)
+            editTextApellidos.setText(estudiante.apellidos)
+            editTextSemestre.setText(estudiante.semestre)
 
             editTextNumeroControl.isEnabled = false // Para deshabilitar la edición del número de control
 
-            view?.let { safeView ->
-                val btnAgregarEstudiante: Button = safeView.findViewById(R.id.btnEditarEstudiante)
-                btnAgregarEstudiante.setOnClickListener {
-                    if (nuevoSemestre != null) {
-                        acrualizarDatos(nuevoControl, nuevoNombre, nuevoApellido, nuevoSemestre)
-                    } else {
-                        // Manejar el caso en que el texto no sea un número válido
-                        Toast.makeText(activity, "El semestre ingresado no es un número válido", Toast.LENGTH_SHORT).show()
-                    }
-                }
+
+            val btnEditarEstudiante: Button? = view?.findViewById(R.id.btnEditarEstudiante)
+            btnEditarEstudiante?.setOnClickListener {
+
+                val nuevoControl = editTextNumeroControl.text.toString()
+                val nuevoNombre = editTextNombre.text.toString()
+                val nuevoApellido = editTextApellidos.text.toString()
+                val nuevoSemestre = editTextSemestre.text.toString()
+
+                print("entrando al boton de actualizar")
+                Log.d("datos_: $nuevoControl, $nuevoNombre, $nuevoApellido, $nuevoSemestre" ,"datos nuevos")
+                actualizarDatos(nuevoControl, nuevoNombre, nuevoApellido, nuevoSemestre)
+                clearFields()
             }
 
-            // Puedes mostrar un mensaje indicando que el estudiante fue encontrado
-            Toast.makeText(
-                activity,
-                "Estudiante encontrado. Puedes editar la información.",
-                Toast.LENGTH_SHORT
-            ).show()
-        } else {
-            // Puedes mostrar un mensaje indicando que el estudiante no fue encontrado
-            Toast.makeText(activity, "Estudiante no encontrado", Toast.LENGTH_SHORT).show()
         }
     }
 
-    fun acrualizarDatos(nuevoControl: String,nuevoNombre: String,nuevoApellido : String,nuevoSemestre: Int){
-
+    fun actualizarDatos(
+        nuevoControl: String,
+        nuevoNombre: String,
+        nuevoApellido: String,
+        semestre: String
+    ) {
         val crudEstudiante = (activity as MainActivity).crudEstudiante
-        crudEstudiante.editarEstudiantes(nuevoControl,nuevoNombre,nuevoApellido,nuevoSemestre)
 
+        val edicionExitosa = crudEstudiante.editarEstudiantes(nuevoControl, nuevoNombre, nuevoApellido, semestre)
+
+        if(edicionExitosa){
+            Toast.makeText(activity, "Estudiante editado correctamente.$edicionExitosa", Toast.LENGTH_SHORT).show()
+            clearFields()
+        }else{
+            Toast.makeText(activity, "fallo la edicion", Toast.LENGTH_SHORT).show()
+            clearFields()
+        }
     }
 
 
-    fun actualizarInterfazUsuario() {
-        editTextNumeroControl.setText("")
-        editTextNombre.setText("")
-        editTextApellidos.setText("")
-        editTextSemestre.setText("")
-        // Actualiza otras vistas según sea necesario
+    private fun clearFields() {
+        buscarEstudianteEditar.text.clear()
+        editTextNumeroControl.text.clear()
+        editTextNombre.text.clear()
+        editTextApellidos.text.clear()
+        editTextSemestre.text.clear()
     }
 
 
@@ -140,3 +149,5 @@ class FourFragment() : Fragment() {
             }
     }
 }
+
+

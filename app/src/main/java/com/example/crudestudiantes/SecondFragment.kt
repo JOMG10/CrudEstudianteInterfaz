@@ -62,7 +62,6 @@ class SecondFragment : Fragment() {
         textViewEstudiantes?.text = ""
         for (estudiante in estudiantes) {
             textViewEstudiantes?.append(
-                "\n \n-----LISTA DE LOS ESTUDIANTES -----\n" +
                         "--NUMERO DE CONTROL: ${estudiante.numeroControl}\n" +
                         "NOMBRE: ${estudiante.nombre}\n" +
                         " APELLIDOS: ${estudiante.apellidos}\n" +
