@@ -2,7 +2,6 @@ package com.example.crudestudiantes
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -64,43 +63,45 @@ class FourFragment() : Fragment() {
     }
 
 
-
     fun buscarEstudianteEditar() {
-
         val crudEstudiante = (activity as MainActivity).crudEstudiante
 
         val numeroControl = buscarEstudianteEditar.text.toString()
 
+        // Llama al método editar de CRUDEstudiante para obtener el estudiante
         val estudiante = crudEstudiante.editar(numeroControl)
 
         if (estudiante != null) {
+            // Asignas cada valor a los EditText correspondientes
 
-            editTextNumeroControl.setText(estudiante.numeroControl)
-            editTextNombre.setText(estudiante.nombre)
-            editTextApellidos.setText(estudiante.apellidos)
-            editTextSemestre.setText(estudiante.semestre)
-
-            editTextNumeroControl.isEnabled = false // Para deshabilitar la edición del número de control
+            editTextNumeroControl.setText(estudiante.numeroControl).toString()
+            editTextNombre.setText(estudiante.nombre).toString()
+            editTextApellidos.setText(estudiante.apellidos).toString()
+            editTextSemestre.setText(estudiante.semestre).toString()
 
 
-            val btnEditarEstudiante: Button? = view?.findViewById(R.id.btnEditarEstudiante)
-            btnEditarEstudiante?.setOnClickListener {
 
-                val nuevoControl = editTextNumeroControl.text.toString()
-                val nuevoNombre = editTextNombre.text.toString()
-                val nuevoApellido = editTextApellidos.text.toString()
-                val nuevoSemestre = editTextSemestre.text.toString()
+            val nuevoControl = editTextNumeroControl.text.toString()
+            val nuevoNombre = editTextNombre.text.toString()
+            val nuevoApellido = editTextApellidos.text.toString()
+            val nuevoSemestre = editTextSemestre.text.toString()
 
-                print("entrando al boton de actualizar")
-                Log.d("datos_: $nuevoControl, $nuevoNombre, $nuevoApellido, $nuevoSemestre" ,"datos nuevos")
-                actualizarDatos(nuevoControl, nuevoNombre, nuevoApellido, nuevoSemestre)
-                clearFields()
+
+            //val nuevoSemestre  = editTextSemestre.setText((estudiante.semestre.toString().toIntOrNull()))
+
+            //editTextNumeroControl.isEnabled = false // Para deshabilitar la edición del número de control
+
+            view?.let { safeView ->
+                val btnAgregarEstudiante: Button = safeView.findViewById(R.id.btnEditarEstudiante)
+                btnAgregarEstudiante.setOnClickListener {
+                        acrualizarDatos(nuevoControl,nuevoNombre,nuevoApellido,nuevoSemestre)
+                        clearFields()
+                }
             }
-
         }
     }
 
-    fun actualizarDatos(
+    fun acrualizarDatos(
         nuevoControl: String,
         nuevoNombre: String,
         nuevoApellido: String,
@@ -110,22 +111,29 @@ class FourFragment() : Fragment() {
 
         val edicionExitosa = crudEstudiante.editarEstudiantes(nuevoControl, nuevoNombre, nuevoApellido, semestre)
 
-        if(edicionExitosa){
-            Toast.makeText(activity, "Estudiante editado correctamente.$edicionExitosa", Toast.LENGTH_SHORT).show()
+        if (edicionExitosa) {
+            Toast.makeText(activity, "Estudiante editado correctamente.", Toast.LENGTH_SHORT).show()
             clearFields()
-        }else{
-            Toast.makeText(activity, "fallo la edicion", Toast.LENGTH_SHORT).show()
-            clearFields()
+        } else {
+            Toast.makeText(activity, "Estudiante no encontrado.", Toast.LENGTH_SHORT).show()
         }
     }
 
 
     private fun clearFields() {
-        buscarEstudianteEditar.text.clear()
         editTextNumeroControl.text.clear()
         editTextNombre.text.clear()
         editTextApellidos.text.clear()
         editTextSemestre.text.clear()
+    }
+
+
+    fun actualizarInterfazUsuario() {
+        editTextNumeroControl.setText("")
+        editTextNombre.setText("")
+        editTextApellidos.setText("")
+        editTextSemestre.setText("")
+        // Actualiza otras vistas según sea necesario
     }
 
 
