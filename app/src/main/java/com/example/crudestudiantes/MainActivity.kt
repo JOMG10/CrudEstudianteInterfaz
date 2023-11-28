@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
     private val secondFragment = SecondFragment()
     private val thirdFragment = ThirdFragment()
     private val fourFragment = FourFragment()
+    private val fourFragment = FourFragment ()
     private val fiveFragment = FiveFragment()
 
     val crudEstudiante = CRUDEstudiante()
