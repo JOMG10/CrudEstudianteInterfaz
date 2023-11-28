@@ -68,33 +68,27 @@ class FourFragment() : Fragment() {
 
         val numeroControl = buscarEstudianteEditar.text.toString()
 
-        // Llama al método editar de CRUDEstudiante para obtener el estudiante
         val estudiante = crudEstudiante.editar(numeroControl)
 
         if (estudiante != null) {
-            // Asignas cada valor a los EditText correspondientes
 
             editTextNumeroControl.setText(estudiante.numeroControl).toString()
             editTextNombre.setText(estudiante.nombre).toString()
             editTextApellidos.setText(estudiante.apellidos).toString()
             editTextSemestre.setText(estudiante.semestre).toString()
 
-
-
-            val nuevoControl = editTextNumeroControl.text.toString()
-            val nuevoNombre = editTextNombre.text.toString()
-            val nuevoApellido = editTextApellidos.text.toString()
-            val nuevoSemestre = editTextSemestre.text.toString()
-
-
-            //val nuevoSemestre  = editTextSemestre.setText((estudiante.semestre.toString().toIntOrNull()))
-
-            //editTextNumeroControl.isEnabled = false // Para deshabilitar la edición del número de control
+            editTextNumeroControl.isEnabled = false // Para deshabilitar la edición del número de control
 
             view?.let { safeView ->
                 val btnAgregarEstudiante: Button = safeView.findViewById(R.id.btnEditarEstudiante)
                 btnAgregarEstudiante.setOnClickListener {
-                        acrualizarDatos(nuevoControl,nuevoNombre,nuevoApellido,nuevoSemestre)
+
+                    val nuevoControl = editTextNumeroControl.text.toString()
+                    val nuevoNombre = editTextNombre.text.toString()
+                    val nuevoApellido = editTextApellidos.text.toString()
+                    val nuevoSemestre = editTextSemestre.text.toString()
+
+                    acrualizarDatos(nuevoControl,nuevoNombre,nuevoApellido,nuevoSemestre)
                         clearFields()
                 }
             }
@@ -121,19 +115,12 @@ class FourFragment() : Fragment() {
 
 
     private fun clearFields() {
+
+        buscarEstudianteEditar.text.clear()
         editTextNumeroControl.text.clear()
         editTextNombre.text.clear()
         editTextApellidos.text.clear()
         editTextSemestre.text.clear()
-    }
-
-
-    fun actualizarInterfazUsuario() {
-        editTextNumeroControl.setText("")
-        editTextNombre.setText("")
-        editTextApellidos.setText("")
-        editTextSemestre.setText("")
-        // Actualiza otras vistas según sea necesario
     }
 
 
