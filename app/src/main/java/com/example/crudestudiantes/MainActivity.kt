@@ -2,7 +2,6 @@ package com.example.crudestudiantes
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -11,6 +10,7 @@ class MainActivity : AppCompatActivity() {
     private val firstFragment = FirstFragment()
     private val secondFragment = SecondFragment()
     private val thirdFragment = ThirdFragment()
+    private val fourFragment = FourFragment()
     private val fourFragment = FourFragment ()
     private val fiveFragment = FiveFragment()
 

@@ -62,7 +62,6 @@ class SecondFragment : Fragment() {
         textViewEstudiantes?.text = ""
         for (estudiante in estudiantes) {
             textViewEstudiantes?.append(
-                "\n \n-----LISTA DE LOS ESTUDIANTES -----\n" +
                         "--NUMERO DE CONTROL: ${estudiante.numeroControl}\n" +
                         "NOMBRE: ${estudiante.nombre}\n" +
                         " APELLIDOS: ${estudiante.apellidos}\n" +
@@ -70,26 +69,6 @@ class SecondFragment : Fragment() {
         }
     }
 
-
-    @SuppressLint("SetTextI18n")
-    fun mostrarLista(view: View) {
-        val crudEstudiante = (activity as MainActivity).crudEstudiante
-
-        Log.d("SecondFragment", "mostrarLista() llamado")
-        val listaEstudiantes = crudEstudiante.obtenerListaEstudiantes()
-
-        if (listaEstudiantes.isNotEmpty()) {
-            val stringBuilder = StringBuilder()
-
-            for (estudiante in listaEstudiantes) {
-                stringBuilder.append("${estudiante.nombre} ${estudiante.apellidos}, Semestre ${estudiante.semestre}\n")
-            }
-
-            txtEstudiantes.text = stringBuilder.toString()
-        } else {
-            txtEstudiantes.text = "La lista de estudiantes está vacía."
-        }
-    }
 
     companion object {
         /**

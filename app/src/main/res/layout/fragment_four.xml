@@ -3,15 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstFragment">
+    tools:context=".FourFragment">
 
-    <!-- fragment_first.xml -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp"
-        >
+        android:padding="16dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -19,15 +17,13 @@
             android:layout_marginTop="0dp"
             android:fontFamily="sans-serif-black"
             android:gravity="center_horizontal"
-            android:text="AGREGAR ESTUDIANTE"
+            android:text="EDITAR ESTUDIANTE"
             android:textColor="@color/green_normal"
             android:textSize="30sp" />
 
 
-
-
         <EditText
-            android:id="@+id/editTextNumeroControl"
+            android:id="@+id/BuscarEstudianteEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Numero de control"
@@ -35,25 +31,43 @@
             android:layout_marginTop="10dp"
             android:textSize="20dp"/>
 
+        <Button
+            android:id="@+id/btnBuscarEstudianteEdit"
+            android:onClick="actualizarDatos"
+            android:text="Buscar"
+            android:layout_marginTop="0dp"
+            android:layout_gravity="center"
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            />
+
         <EditText
-            android:id="@+id/editTextNombre"
+            android:id="@+id/editarNumeroControl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Numero de control"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"/>
+
+        <EditText
+            android:id="@+id/editarNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nombre"
             android:textSize="20dp"
-        android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"/>
 
         <EditText
-            android:id="@+id/editTextApellidos"
+            android:id="@+id/editarApellidos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Apellidos"
             android:textSize="20dp"
             android:layout_marginTop="10dp"
-             />
+            />
 
         <EditText
-            android:id="@+id/editTextSemestre"
+            android:id="@+id/editarSemestre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Semestre"
@@ -62,9 +76,9 @@
             android:layout_marginTop="10dp"/>
 
         <Button
-            android:id="@+id/btnAgregarEstudiante"
-            android:onClick="agregarEstudiante"
-            android:text="Agregar"
+            android:id="@+id/btnEditarEstudiante"
+            android:onClick="editarEstudiantes"
+            android:text="Actualizar"
             android:layout_marginTop="0dp"
             android:layout_gravity="center"
             android:layout_width="130dp"
